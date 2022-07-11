@@ -4,6 +4,7 @@ const express=require('express');
 var app=express();
 app.use(express.json());
 
+const Process = require("process");
 
 const uri = "mongodb://localhost/Bajaj";
 mongoose.connect(uri,{useNewUrlParser: true, useUnifiedTopology: true})
@@ -13,7 +14,8 @@ mongoose.connect(uri,{useNewUrlParser: true, useUnifiedTopology: true})
     .catch(()=>{
         console.log("not connected");
     });
-const port=3090;
+
+const port=Process.env.PORT||3090;
 app.listen(port,()=>{
     console.log(`listening at ${port}`);
 })
